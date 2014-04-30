@@ -1,0 +1,9 @@
+create L1
+append L1 100
+append L1 200
+append L1 300
+append L1 400
+append L1 500
+print L1
+remove L1 200
+print L1

@@ -1,0 +1,10 @@
+create L1
+print L1
+append L1 100
+print L1
+append L1 200
+print L1
+append L1 300
+print L1
+append L1 400
+print L1

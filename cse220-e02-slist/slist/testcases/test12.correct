@@ -1,0 +1,9 @@
+L1 created
+appended 100 to L1
+appended 200 to L1
+appended 300 to L1
+appended 400 to L1
+appended 500 to L1
+L1 = [ 100 200 300 400 500 ]
+removed 500 from L1
+L1 = [ 100 200 300 400 ]

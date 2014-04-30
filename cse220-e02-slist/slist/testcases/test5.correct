@@ -1,0 +1,10 @@
+L1 created
+appended 100 to L1
+appended 200 to L1
+appended 300 to L1
+appended 400 to L1
+found 100 in L1
+found 200 in L1
+found 300 in L1
+found 400 in L1
+failed to find 999 in L1

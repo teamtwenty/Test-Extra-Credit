@@ -1,0 +1,10 @@
+create L1
+append L1 100
+append L1 200
+append L1 300
+append L1 400
+find L1 100
+find L1 200
+find L1 300
+find L1 400
+find L1 999

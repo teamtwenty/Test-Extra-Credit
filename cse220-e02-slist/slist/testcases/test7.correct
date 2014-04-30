@@ -1,0 +1,5 @@
+L1 created
+appended 100 to L1
+appended 200 to L1
+inserted 300 at 1 in L1
+L1 = [ 100 300 200 ]
