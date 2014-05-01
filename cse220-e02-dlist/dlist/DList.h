@@ -50,7 +50,10 @@ extern DList *DListAppend
     );
 
 /* Function declaration for DListCopy() */
-???
+extern DList *DListCopy
+    (
+    DList *pSrcList
+    );
 
 extern void DListDebugPrint
     (
@@ -59,13 +62,25 @@ extern void DListDebugPrint
     );
 
 /* Function declaration for DListDebugPrintRev() */
-???
+extern void DListDebugPrintRev
+    (
+    FILE *stream,
+    DList *pList
+    );
 
 /* Function declaration for DListFindData() */
-???
+extern DNode *DListFindData
+    (
+    DList *pList,
+    int    pData
+    );
 
 /* Function declaration for DListFindIndx() */
-???
+extern DNode *DListFindIndex
+    (
+    DList *pList,
+    int    pIndex
+    );
 
 extern DList *DListFree
     (
@@ -78,7 +93,11 @@ extern DListNode *DListGetHead
     );
 
 /* Function declaration for DListGetIndex() */
-???
+extern DListNode *DListGetIndex
+    (
+    DList *pList,
+    int    pData
+    );
 
 extern int DListGetSize
     (
@@ -91,10 +110,20 @@ extern DListNode *DListGetTail
     );
 
 /* Function declaration for DListInsertBefore() */
-???
+extern DList *DListInsertBefore
+    (
+    DList *pList,
+    int    pBefore,
+    int    pData
+    );
 
 /* Function declaration for DListInsertIndex() */
-???
+extern DList *DListInsertIndex
+    (
+    DList *pList,
+    int    pIndex,
+    int    pData
+    );
 
 extern bool DListIsEmpty
     (
@@ -102,10 +131,18 @@ extern bool DListIsEmpty
     );
 
 /* Function declaration for DListRemoveData() */
-???
+extern DList *DListRemoveData
+    (
+    DList *pList,
+    int    pData
+    );
 
 /* Function declaration for DListRemoveIndex() */
-???
+extern DList *DListRemoveIndex
+    (
+    DList *pList,
+    int    pIndex
+    );
 
 extern DList *DListSetHead
     (
