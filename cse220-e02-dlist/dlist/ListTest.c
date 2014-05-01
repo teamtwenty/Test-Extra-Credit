@@ -38,7 +38,9 @@ static void ListTestCmdAppend
     );
 
 /* Function declaration for ListTestCmdCopy() */
-???
+static void ListTestCmdCopy
+    (
+    );
 
 static void ListTestCmdCreate
     (
@@ -49,30 +51,42 @@ static void ListTestCmdFind
     );
 
 /* Function declaration for ListTestCmdFindAt() */
-???
+static void ListTestCmdFindAt
+    (
+    );
 
 static void ListTestCmdFree
     (
     );
 
 /* Function declaration for ListTestInsert() */
-???
+static void ListTestInsert
+    (
+    );
 
 /* Function declaration for ListTestInsertAt() */
-???
+static void ListTestInsertAt
+    (
+    );
 
 static void ListTestCmdPrint
     (
     );
 
 /* Function declaration for ListTestCmdPrintRev() */
-???
+static void ListTestCmdPrintRev
+    (
+    );
 
 /* Function declaration for ListTestRemove() */
-???
+static void ListTestRemove
+    (
+    );
 
 /* Function declaration for ListTestCmdRemoveAt() */
-???
+static void ListTestCmdRemoveAt
+    (
+    )
 
 static void ListTestFileClose
     (
