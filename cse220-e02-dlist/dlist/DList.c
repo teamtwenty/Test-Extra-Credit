@@ -114,8 +114,17 @@ DList *DListAppend
  * End While
  * Return copy_list
  *------------------------------------------------------------------------------------------------------------*/
-???
-
+DList *DListCopy (DList *pSrcList)
+{
+    assert(pSrcList);
+    DListNode *traverse = DListGetHead(pList);
+    while(traverse) {
+        DListNodeGetData(traverse);
+        DListAppend(copy_list);
+        traverse = DlistNodeGetNext(traverse);
+    }
+    return copy_list;
+}
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: DListDebugPrint
  * DESCR: Prints the contents of the list pList to the stream pStream. Prints "List is NULL" if L is NULL. This
@@ -149,7 +158,26 @@ void DListDebugPrint
  * PCODE:
  * This is a pretty easy function to write. Just study DListDebugPrint().
  *------------------------------------------------------------------------------------------------------------*/
-???
+void DListDebugPrintRev
+    (
+    FILE  *pStream,
+    DList *pList
+)
+{
+    DListNode *traverse;
+    if (!pList) {
+        fprintf(pStream, "List is NULL.\n");
+        return;
+    }
+    fprintf(pStream, "[ ");
+    traverse = DListGetTail(pList);
+    while (traverse) {
+        DListNodeDebugPrint(pStream, traverse);
+        fprintf(pStream, " ");
+        traverse = DListNodeGetPrev(traverse);
+    }
+    fprintf(pStream, "]");
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: DListFindData
@@ -190,7 +218,20 @@ DListNode *DListFindData
  * End While
  * Return traverse
  *------------------------------------------------------------------------------------------------------------*/
-???
+DNode *DListFindIndex (DList *pList, int pIndex)
+    {
+        assert(pList);
+        if(pIndex<0 || pIndex>=DListGetSize(pList))
+        {
+            return NULL;
+        }
+        DListNode *traverse = DListGetHead(pList);
+        while(traverse && --pIndex>=0)
+        {
+            traverse = DListGetNext(pList);
+        }
+        return traverse;
+    }
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: DListFree
@@ -251,7 +292,23 @@ DListNode *DListGetHead
  * End If
  * Return -1
  *------------------------------------------------------------------------------------------------------------*/
-???
+int DListGetIndex (DList *pList, int pData)
+{
+    assert(pList);
+    int index = 0;
+    DListNode *traverse = DListGetHead(pList);
+    while(traverse)
+    {
+        if(traverse = DlistNodeGetData(pData))
+        {
+            return index;
+        }
+            index++;
+            traverse = DListNodeGetNext(pList);
+        }
+    }
+    
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: DListGetSize
@@ -290,9 +347,17 @@ DListNode *DListGetTail
  * If index < 0 Then Return null
  * Else Return DListInsertIndex(pList, index, pData)
  *------------------------------------------------------------------------------------------------------------*/
-???
-
-/*--------------------------------------------------------------------------------------------------------------
+DList *DListInsertBefore (Dlist *pList, int pBefore, int pData)
+{
+    assert(pList);
+    int index = DListFindData(pList, pBefore);
+    if(index < 0)
+    {
+        return NULL;
+    }
+    return DListInsertIndex(pList, index, pData);
+}
+/*-------------------------------------------------------------------------------------------------------------
  * FUNCT: DListInsertIndex
  * DESCR: Inserts a new node containing pData into the list pList at index pIndex. The nodes in the list are
  *        numbered starting at 0. Fails and returns NULL if: (1) pList is empty; or (2) pIndex < 0; or (3)
@@ -307,7 +372,7 @@ DListNode *DListGetTail
  * new_node <- DListNodeAlloc(pData, DListNodeGetPrev(index_node), index_node)
  * If the prev pointer of index_node is not null Then
  *     prev_index <- Get the prev pointer of index_node
- *     Set the next pointer of prev_index to point to new_node
+ *     set the next pointer of prev_index to point to new_node
  * Else
  *     Set the head pointer of pList to point to new_node
  * End If
@@ -315,8 +380,36 @@ DListNode *DListGetTail
  * Increment the size of pList
  * Return pList
  *------------------------------------------------------------------------------------------------------------*/
-???
-
+Dlist *DlistInsertIndex (Dlist *pList, int pIndex, int pData)
+{
+    assert(pList);
+    DListNode *index_node;
+    DListNode *new_node;
+    if(!plist || pIndex<0 || pList>=DListGetSize(pList))
+    {
+        return NULL;
+    }
+    index_node <- DListFindIndex(pList, pIndex)
+    if(!index_node)
+    {
+        return NULL;
+    }
+    new_node = DListNodeAlloc(pData, DListNodeGetPrev(index_node), index_node);
+    if(DListNodeGetPrev(index_node))
+    {
+        pIndex <- DlistNodeGetPrev(index_node);
+        new_node <- DListNodeGetNext(pIndex);
+    else
+    {
+        new_node <- DListNodeGetHead(pList);
+    }
+    }
+    new_node <- DListNodeGetPrev(index_node);
+    DListSetSize(pList, DListGetSize(pList) + 1);
+    return pList;
+    
+    
+}
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: DListIsEmpty
  * DESCR: Returns true if the pList is empty, false otherwise. Assertion error if pList is NULL.
@@ -360,7 +453,12 @@ DList *DListRemoveData
  * Define index_node as DListNode * <- DlistFindIndex(pList, pIndex)
  * Return DListNodeRemove(pList, index_node);
  *------------------------------------------------------------------------------------------------------------*/
-???
+DList *DListRemoveIndex (Dlist *pList, int pIndex)
+{
+    assert(pList);
+    DListNode *index_node = DListFindIndex(pList, pIndex);
+    return DListNodeRemove(pList, index_node);
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: DListNodeRemove
@@ -394,7 +492,28 @@ DList *DListRemoveData
  * Decrement the size of pList
  * Return pList
  *------------------------------------------------------------------------------------------------------------*/
-???
+static DList *DListRemoveNode (DList *pList, DListNode *pNode)
+{
+    assert(pList);
+    if(!pNode)
+    {
+        return NULL;
+    }
+    
+    if(pNode = DListNodeGetHead(pList))
+    {
+        DListSetHead(pList, DListNodeGetNext(pNode))
+        if(DListNodeGetHead(pList))
+        {
+            pNode = NULL;
+        }
+    }
+    else if (pNode = DListNodeGetTail(pList))
+    {
+        
+    }
+    
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: DListSetHead
