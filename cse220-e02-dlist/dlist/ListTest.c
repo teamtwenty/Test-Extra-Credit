@@ -360,7 +360,21 @@ static void ListTestCmdPrint
  *     Print " ... does not exist"
  * End If
  *------------------------------------------------------------------------------------------------------------*/
-???
+static void ListTestCmdPrintRev
+    (
+    )
+{
+    char listname[8];
+    fscanf(gFin, "%s", listname);
+    DList *list = ListManGetList(listname);
+    if (list) {
+        fprintf(gFout, "%s = ", listname);
+        DListDebugPrintRev(gFout, list);
+        fprintf(gFout, "\n");
+    } else {
+        fprintf(gFout, "%s does not exist\n", listname);
+    }
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: ListTestCmdRemove
@@ -399,7 +413,18 @@ static void ListTestCmdRemove
  *     Print "failed ..."
  * End If
  *------------------------------------------------------------------------------------------------------------*/
-???
+ static void ListTestCmdRemoveAt
+    (
+    )
+{
+    char listname[8];
+    int index;
+    DList *list;
+    fscanf(gFin, "%s%d", listname, &index);
+    list = ListManGetList(listname);
+    if (DListRemoveIndex(list, index)) fprintf(gFout, "removed %d from %s\n", index, listname);
+    else fprintf(gFout, "failed to remove %d from %s\n", index, listname);
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: ListTestFileClose
