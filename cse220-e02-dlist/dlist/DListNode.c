@@ -37,14 +37,14 @@
 DListNode *DListNodeAlloc
     (
     int        pData,
-    ???                /* Add pPrev pointer */
+    DListNode *pPrev,                /* Add pPrev pointer */
     DListNode *pNext
     )
 {
     DListNode *new_node = (DListNode*)malloc(sizeof(DListNode));
     if (new_node) {
         DListNodeSetData(new_node, pData);
-        ???                                 /* Set the mPrev data member to pPrev */
+        DListNodeSetData(pPrev), DListNodeGetData(mPrev));  /* Set the mPrev data member to pPrev */
         DListNodeSetNext(new_node, pNext);
     }
     return new_node;
@@ -104,7 +104,11 @@ DListNode *DListNodeGetNext
 /*--------------------------------------------------------------------------------------------------------------
  * Accessor function for the mPrev data member. Assertion error if pNode is NULL.
  *------------------------------------------------------------------------------------------------------------*/
-???
+DListNode *DListNodeGetPrev (DListNode *pNode)
+{
+    assert(pNode);
+    return pNode->mPrev;
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * Mutator function for the mData data member. Assertion error if pNode is NULL.
@@ -135,4 +139,12 @@ void DListNodeSetNext
 /*--------------------------------------------------------------------------------------------------------------
  * Mutator function for the mPrev data member. Assertion error if pNode is NULL.
  *------------------------------------------------------------------------------------------------------------*/
-???
+void DListNodeSetPrev
+    (
+    DListNode *pNode,
+    DListNode *pPrev
+    )
+{
+    assert(pNode);
+    pNode->mPrev = pPrev;
+}
