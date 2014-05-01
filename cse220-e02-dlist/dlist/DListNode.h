@@ -31,7 +31,7 @@
 typedef struct DListNode_ {
     int                mData;  /* Each node stores a simple int. */
     struct DListNode_ *mNext;  /* Pointer to the next node in the list. NULL if this is the last node. */
-    ???                        /* Pointer to the prev node in the list. NULL if this is the last node. */
+    struct DListNode_ *mPrev                        /* Pointer to the prev node in the list. NULL if this is the last node. */
 } DListNode;
 
 /*==============================================================================================================
