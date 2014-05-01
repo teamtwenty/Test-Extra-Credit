@@ -66,7 +66,10 @@ extern DListNode *DListNodeGetNext
     );
 
 /* Function declaration for DListNodeGetPrev() */
-???
+extern DListNode *DListNodeGetPrev
+    (
+    DListNode *pNode
+    );
 
 extern void DListNodeSetData
     (
@@ -80,7 +83,11 @@ extern void DListNodeSetNext
     DListNode *pNext
     );
 
-/* Function declaration for DListNodeSetPrev()
-???
+/* Function declaration for DListNodeSetPrev()*/
+extern void DListNodeSetPrev
+    (
+    DListNode *pNode,
+    DListNode *pPrev
+    );
 
 #endif
