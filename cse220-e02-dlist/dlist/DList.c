@@ -172,7 +172,7 @@ void DListDebugPrintRev
     fprintf(pStream, "[ ");
     traverse = DListGetTail(pList);
     while (traverse) {
-        DListNodeDebugPrint(pStream, traverse);
+        DListNodeDebugPrintRev(pStream, traverse);
         fprintf(pStream, " ");
         traverse = DListNodeGetPrev(traverse);
     }
@@ -226,7 +226,7 @@ DNode *DListFindIndex (DList *pList, int pIndex)
             return NULL;
         }
         DListNode *traverse = DListGetHead(pList);
-        while(traverse && --pIndex>=0)
+        while(traverse && pIndex>=0)
         {
             traverse = DListGetNext(pList);
         }
@@ -385,7 +385,7 @@ Dlist *DlistInsertIndex (Dlist *pList, int pIndex, int pData)
     assert(pList);
     DListNode *index_node;
     DListNode *new_node;
-    if(!plist || pIndex<0 || pList>=DListGetSize(pList))
+    if(DListisEmpty(pList) || pIndex<0 || pList>=DListGetSize(pList))
     {
         return NULL;
     }
