@@ -175,7 +175,20 @@ static void ListTestCmdAppend
  * Call ListManCreateList() to add the dstlist to the list manager database.
  * Print "copied ..."
  *------------------------------------------------------------------------------------------------------------*/
-???
+static void ListTestCmdCopy
+    (
+    )
+{
+    char dstlistname[8];
+    char srclistname[8];
+    DList *srclist;
+    Dlist *dstlist;
+    fscanf(gFin, "%s%s", dstlistname, srclistname);
+    srclist = ListManGetList(srclistname);
+    dstlist = DListCopy(srclist);
+    ListManCreateList(dstlistname, dstlist);
+    fprintf(gFout, "copied %s to %s", dstlist, dstlistname);
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: ListTestCmdCreate
@@ -246,7 +259,20 @@ static void ListTestCmdFind
  *     Print "failed to findat ..."
  * End If
  *------------------------------------------------------------------------------------------------------------*/
-???
+static void ListTestCmdFindAt
+    (
+    )
+{
+    char listname[8];
+    int index;
+    DList *list;
+    DListNode *found_node;
+    fscanf(gFin, "%s%d", listname, &index);
+    list = ListManGetList(listname);
+    found_node = DListFindIndex(list, index);
+    if (found_node) fprintf(gFout, "found index %d in %s\n", index, listname);
+    else fprintf(gFout, "failed to find index %d in %s\n", index, listname);
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: ListTestCmdFree
@@ -318,7 +344,20 @@ static void ListTestCmdInsert
  *     Print "failed ..."
  * End If
  *------------------------------------------------------------------------------------------------------------*/
-???
+static void ListTestCmdInsertAt
+    (
+    )
+{
+    char listname[8];
+    int index, data;
+    fscanf(gFin, "%s%d%d", listname, &index, &data);
+    DList *list = ListManGetList(listname);
+    if (DListInsertIndex(list, index, data)) {
+        fprintf(gFout, "inserted %d at index %d in %s\n", data, index, listname);
+    } else {
+        fprintf(gFout, "failed to insert %d at index %d in %s\n", data, index, listname);
+    }
+}
 
 /*--------------------------------------------------------------------------------------------------------------
  * FUNCT: ListTestCmdPrint
